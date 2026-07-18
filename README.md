@@ -12,23 +12,23 @@ The platform follows a decoupled client-server architecture separating UI render
 
 ```mermaid
 graph TD
-    subgraph Client [Frontend UI - React TS]
-        Dashboard[UI Dashboard - React / Vite]
-        Framer[Framer Motion Animations]
-        Plotly[Plotly.js Interactive Charts]
-        State[State Router & API Fetchers]
+    subgraph Client ["Frontend UI - React TS"]
+        Dashboard["UI Dashboard - React / Vite"]
+        Framer["Framer Motion Animations"]
+        Plotly["Plotly.js Interactive Charts"]
+        State["State Router & API Fetchers"]
     end
 
-    subgraph Server [Backend REST Service - Flask]
-        Flask[Flask API Handler]
-        Logger[Structured Logger]
-        Solver[SciPy Budget Optimizer]
+    subgraph Server ["Backend REST Service - Flask"]
+        Flask["Flask API Handler"]
+        Logger["Structured Logger"]
+        Solver["SciPy Budget Optimizer"]
     end
 
-    subgraph ML [Data & ML Layer]
-        Data[Advertising.csv Database]
-        Pipeline[ML Preprocessing & Training]
-        Model[Serialized Lasso Regressor]
+    subgraph ML ["Data & ML Layer"]
+        Data["Advertising.csv Database"]
+        Pipeline["ML Preprocessing & Training"]
+        Model["Serialized Lasso Regressor"]
     end
 
     Dashboard -->|1. Run Predict / Optimize| Flask
@@ -47,17 +47,17 @@ The end-to-end data cleaning, engineering, training, optimization, and serving p
 
 ```mermaid
 flowchart TD
-    Raw[Raw Advertising.csv] --> DropIndex[1. Drop Unused Index Column]
-    DropIndex --> Outliers[2. Outlier Capping (Winsorization)]
-    Outliers --> LogSkew[3. Log Transform (Newspaper Skew)]
-    LogSkew --> FeatureEng[4. Feature Engineering: Total Spend, Shares, TV-Radio Synergy]
-    FeatureEng --> Split[5. Train/Test Partition (80/20)]
-    Split --> Scale[6. Standardization (StandardScaler)]
-    Scale --> Tuning[7. GridSearchCV (Hyperparameter Tuning)]
-    Tuning --> Serial[8. Model Serialization (Joblib)]
-    Serial --> Service[9. Flask API Endpoint Serving]
-    Service --> UI[10. React Real-time Dashboard]
-    UI --> Solver[11. SciPy SLSQP Budget Allocator]
+    Raw["Raw Advertising.csv"] --> DropIndex["1. Drop Unused Index Column"]
+    DropIndex --> Outliers["2. Outlier Capping (Winsorization)"]
+    Outliers --> LogSkew["3. Log Transform (Newspaper Skew)"]
+    LogSkew --> FeatureEng["4. Feature Engineering: Total Spend, Shares, TV-Radio Synergy"]
+    FeatureEng --> Split["5. Train/Test Partition (80/20)"]
+    Split --> Scale["6. Standardization (StandardScaler)"]
+    Scale --> Tuning["7. GridSearchCV (Hyperparameter Tuning)"]
+    Tuning --> Serial["8. Model Serialization (Joblib)"]
+    Serial --> Service["9. Flask API Endpoint Serving"]
+    Service --> UI["10. React Real-time Dashboard"]
+    UI --> Solver["11. SciPy SLSQP Budget Allocator"]
 ```
 
 ---
