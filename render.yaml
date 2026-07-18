@@ -1,0 +1,27 @@
+services:
+  # Flask Backend Web Service
+  - type: web
+    name: sales-intelligence-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn -c backend/gunicorn.conf.py --chdir backend run:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: FLASK_ENV
+        value: production
+
+  # React Frontend Static Site
+  - type: web
+    name: sales-intelligence-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/dist
+    headers:
+      - path: /*
+        headers:
+          - key: Cache-Control
+            value: public, max-age=0, must-revalidate
+    routes:
+      - src: /*
+        dest: /index.html
